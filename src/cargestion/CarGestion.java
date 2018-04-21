@@ -16,6 +16,7 @@ public class CarGestion {
     private static int menuMain0Option = -1; // 0-1-2-3-4.
     private static int menuMain1Option = -1; // 0-1-2-3.
     private static ArrayList<Cars> arrayCar = new ArrayList();
+    private static ArrayList<Persons> arrayPerson = new ArrayList();
     
     /** @param args the command line arguments  */
     public static void main(String[] args) {  System.out.println("Welcome !\n");
@@ -34,8 +35,7 @@ public class CarGestion {
                         String typeVoiture = "";
                         Cars car= null;
                         switch(menuMain1Option){               
-                            case 0 : menuMain0Option = -1; 
-                                     break;
+                            case 0 : menuMain0Option = -1;
                             case 1 : typeVoiture = "Citadine"; 
                                      optionsMenuGetCar(typeVoiture); 
                                      car = new Citadine();
@@ -53,8 +53,7 @@ public class CarGestion {
                         }
                         
                         int arrLength = arrayCar.size();
-                        String carId = arrLength+"_"+typeVoiture;
-                        car.setModel(carId);
+                        car.setModel(typeVoiture);
                         
                         System.out.print("-> Entrer l'immatriculation de votre "+typeVoiture+" : ");
                         int serial = sc.nextInt();
@@ -73,26 +72,30 @@ public class CarGestion {
                         int nbPlacePass = arrayCar.get(arrLength).nbPassenger;
                         int feePerDay = arrayCar.get(arrLength).dailyFee;
                         
-                        System.out.println("\nVotre "+typeVoiture+" à été enregistré dans le registre."
-                                + "\nImmatriculation : "+immatriculation+"\tNombre d'emplacement passager : "+ nbPlacePass+"\tTarif journalier : "+ feePerDay );
+                        System.out.println("\nVotre " + typeVoiture + " à été enregistré dans le registre."
+                                         + "\nImmatriculation : " + immatriculation
+                                         + "\nNombre d'emplacement passager : " + nbPlacePass
+                                         + "\nTarif journalier : " + feePerDay );
                         break;
                 case 2 : System.out.println("Option "+menuMain0Option+" executed!\n"); break;
-                case 3 : System.out.println("Option "+menuMain0Option+" executed!\n"); break;
+                case 3 : System.out.println("Option "+menuMain0Option+" executed!\n"); 
+                         // Lister Clients
+                         for (int i =0; i<arrayPerson.size(); i++) {
+                             
+                             System.out.printn(i+". "+Nom+" "+Prenom)
+                                     String Nom = arrayPerson.get(i).getName();
+                                     String Prenom = arrayPerson.get(i).getFirstname();
+                         }
+                         
+                
+                
+                         break;
                 default: System.out.println("*** /!\\ Option "+menuMain0Option+" not valid /!\\ ***\n"); break;
             }
         }
         
    
-    /*Persons[] persons = new Persons[4];
-        persons[0] = new Persons("toto",  50, ); persons[1] = new Persons("titi", 1000);
-        persons[2] = new Persons("tata", 200); persons[3] = new Persons("tutu",  900); 
 
-    for(int i=0; i<persons.length; i++) {
-        String personName = persons[i].getName();
-        int personBalance = persons[i].getBalance();
-        System.out.print("Name : "+personName);
-        System.out.println("      Account : "+personBalance+"\n");
-    }    */  
         
     }// end of main
     
@@ -129,7 +132,7 @@ public class CarGestion {
         System.out.println("\t\tOption "+menuMain1Option+" selected!\n\t\tmodel type : "+typeVoiture+"\n");
     }
     
-    
+
     
     
 }// end of class
