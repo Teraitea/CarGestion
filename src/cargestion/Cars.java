@@ -10,6 +10,8 @@ package cargestion;
  * @author tktced
  */
 public class Cars {
+
+    static boolean isAvailable;
 /** Attributes */    
     protected int serial;
     protected int fuelCapacity;
@@ -24,38 +26,120 @@ public class Cars {
     protected int nbPassenger;
     protected int kilometrage;
     protected String model;
+    public static int COUNT = 0;
 
-/** Getters and Setters */     
-    public int getSerial() { return serial; }
-        public void setSerial(int serial) { this.serial = serial; }
-    public int getFuelCapacity() { return fuelCapacity; }
-        public void setFuelCapacity(int fuelCapacity) { this.fuelCapacity = fuelCapacity; }
-    public String getColor() { return color; }
-        public void setColor(String color) { this.color = color; }
-    public int getNumberOfWheel() { return numberOfWheel; }
-        public void setNumberOfWheel(int numberOfWheel) { this.numberOfWheel = numberOfWheel; }
-    public int getNumberOfDoor() { return numberOfDoor; }
-        public void setNumberOfDoor(int numberOfDoor) { this.numberOfDoor = numberOfDoor; }
-    public int getHorsePower() { return horsePower; }
-        public void setHorsePower(int horsePower) { this.horsePower = horsePower; }
-    public int getPrice() { return price; }
-        public void setPrice(int price) { this.price = price; }
-    public boolean isAvailable() { return available; }
-        public void setAvailable(boolean available) { this.available = available; }
-    public int getDailyFee() { return dailyFee; }
-        public void setDailyFee(int dailyFee) { this.dailyFee = dailyFee; }
-    public int getTimesRented() { return timesRented; }
-        public void setTimesRented(int timesRented) { this.timesRented = timesRented; }
-    public int getNbPassenger() { return nbPassenger; }
-        public void setNbPassenger(int nbPassenger) { this.nbPassenger = nbPassenger; }
-    public int getKilometrage() { return kilometrage; }
-        public void setKilometrage(int kilometrage) { this.kilometrage = kilometrage; }
-    public String getModel() { return model; }
-        public void setModel(String model) { this.model = model; }
-/** Constructors */
-    public Cars() { }
-    public Cars(int serial, int fuelCapacity, String color, int numberOfWheel, int numberOfDoor, int horsePower, int price,
-                boolean available, int dailyFee, int timesRented, int nbPassenger, int kilometrage, String model) {
+
+    
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
+
+    public int getFuelCapacity() {
+        return fuelCapacity;
+    }
+
+    public void setFuelCapacity(int fuelCapacity) {
+        this.fuelCapacity = fuelCapacity;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getNumberOfWheel() {
+        return numberOfWheel;
+    }
+
+    public void setNumberOfWheel(int numberOfWheel) {
+        this.numberOfWheel = numberOfWheel;
+    }
+
+    public int getNumberOfDoor() {
+        return numberOfDoor;
+    }
+
+    public void setNumberOfDoor(int numberOfDoor) {
+        this.numberOfDoor = numberOfDoor;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getDailyFee() {
+        return dailyFee;
+    }
+
+    public void setDailyFee(int dailyFee) {
+        this.dailyFee = dailyFee;
+    }
+
+    public int getTimesRented() {
+        return timesRented;
+    }
+
+    public void setTimesRented(int timesRented) {
+        this.timesRented = timesRented;
+    }
+
+    public int getNbPassenger() {
+        return nbPassenger;
+    }
+
+    public void setNbPassenger(int nbPassenger) {
+        this.nbPassenger = nbPassenger;
+    }
+
+    public int getKilometrage() {
+        return kilometrage;
+    }
+
+    public void setKilometrage(int kilometrage) {
+        this.kilometrage = kilometrage;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Cars() {
+        COUNT++;
+    }
+    
+    public Cars(int serial, int fuelCapacity, String color, int numberOfWheel, int numberOfDoor, int horsePower, int price, boolean available, int dailyFee, int timesRented, int nbPassenger, int kilometrage, String model) {
+        this();
         this.serial = serial;
         this.fuelCapacity = fuelCapacity;
         this.color = color;
@@ -70,7 +154,8 @@ public class Cars {
         this.kilometrage = kilometrage;
         this.model = model;
     }
-    
+
+
 /** Methods */
     public void horn() {
         
