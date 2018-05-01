@@ -66,7 +66,6 @@ public class CarGestion {
                         
                         int arrCarLength = arrayCar.size();
                         String carId = arrCarLength+"_"+typeVoiture;
-                        car.setModel(carId);
                         
                         System.out.print("-> Entrer l'immatriculation de votre "+typeVoiture+" : ");
                         int serial = sc.nextInt();
@@ -79,14 +78,15 @@ public class CarGestion {
                         System.out.print("-> Entrer le tarif par jour de la "+typeVoiture+" : ");
                         int fee = sc.nextInt();
                         car.setDailyFee(fee);
-                        
+                        car.setCarType(typeVoiture);
                         arrayCar.add(car);
                         print(Cars.COUNT);
                         int immatriculation = arrayCar.get(arrCarLength).serial;
                         int nbPlacePass = arrayCar.get(arrCarLength).nbPassenger;
                         int feePerDay = arrayCar.get(arrCarLength).dailyFee;
+                        String typeCar = arrayCar.get(arrCarLength).carType;
                         
-                        System.out.println("\nVotre "+typeVoiture+" à été enregistré dans le registre."
+                        System.out.println("\nVotre "+typeCar+" à été enregistré dans le registre."
                                 + "\nImmatriculation : "+immatriculation+"\tNombre d'emplacement passager : "+ nbPlacePass+"\tTarif journalier : "+ feePerDay );
                         break;
                         
@@ -105,13 +105,13 @@ public class CarGestion {
                 default: System.out.println("*** /!\\ L'option l"+menuMain0Option+" n'est pas valide /!\\ ***\n"); break;
             }
         }
-    }// end of main
+    } // end of main
     
     public static void menuRetrieveVehicle() {
         for(int z = 0; z < arrayCar.size(); z++) {
             if(arrayCar.get(z).isAvailable() == false) {
-                print("Imatriculation : " + arrayCar.get(z).serial);
-                print("Available : " + arrayCar.get(z).available);
+                print("Il y a une " + arrayCar.get(z).carType + " qui a pour immatriculation " + arrayCar.get(z).serial);
+
 
             }
         }
@@ -119,29 +119,29 @@ public class CarGestion {
     }
     
     public static void menuNewVehicle() {
-        //déclaration des variables
+        // déclaration des variables
         
         Persons person= new Persons();
         int arrPersonLength = arrayPerson.size();
         
-        //déclaration d'un nouveau client (nom)
+        // déclaration d'un nouveau client (nom)
         System.out.print("-> Entrer le nom  du client : ");
             sc.nextLine() ;
             String name = sc.nextLine() ;
             person.setName(name);
             
-        //déclaration d'un nouveau client (prenom)
+        // déclaration d'un nouveau client (prenom)
         System.out.print("-> Entrer le prenom du client : ");
             String firstname = sc.nextLine();                       
             person.setFirstname(firstname);
             
-        //déclaration d'un nouveau client (age)
+        // déclaration d'un nouveau client (age)
         System.out.print("-> Entrer l'age du client : ");
             int age = sc.nextInt();
             sc.nextLine() ;
             person.setAge(age);
             
-        //déclaration d'un nouveau client (numero permis)
+        // déclaration d'un nouveau client (numero permis)
         System.out.print("-> Entrer le numéro de permis du client : ");
             int nCarLicence = sc.nextInt();
             sc.nextLine() ;

@@ -27,6 +27,15 @@ public class Cars {
     protected int kilometrage;
     protected String model;
     public static int COUNT = 0;
+    protected String carType;
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
 
 
     
