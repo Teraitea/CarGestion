@@ -5,16 +5,18 @@
  */
 package cargestion;
 
-/**
- *
- * @author tktced
- */
+/** @author tktced */
 import java.util.*;
+
 public class CarGestion {
     // Global
-    private static Scanner sc=new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
+    
     private static int menuMain0Option = -1; // 0-1-2-3-4.
     private static int menuMain1Option = -1; // 0-1-2-3.
+    private static int menuMain2Option = -1;
+    private static int menuMain3Option = -1;
+    
     private static ArrayList<Cars> arrayCar = new ArrayList();
     private static ArrayList<Persons> arrayPerson = new ArrayList();
     
@@ -33,7 +35,7 @@ public class CarGestion {
                         System.out.print("-> Entrer votre option : ");
                         menuMain1Option = sc.nextInt();
                         String typeVoiture = "";
-                        Cars car= null;
+                        Cars car = null;
                         switch(menuMain1Option){               
                             case 0 : menuMain0Option = -1;
                             case 1 : typeVoiture = "Citadine"; 
@@ -77,17 +79,60 @@ public class CarGestion {
                                          + "\nNombre d'emplacement passager : " + nbPlacePass
                                          + "\nTarif journalier : " + feePerDay );
                         break;
-                case 2 : System.out.println("Option "+menuMain0Option+" executed!\n"); break;
+                        
+                case 2 : System.out.println("Option "+menuMain0Option+" executed!\n");
+                
+                        showMenuMain2();
+                        
+                        System.out.print("-> Entrer le Nom du client : ");
+                        String lastName = sc.nextLine();
+                        lastName = sc.nextLine();
+                        System.out.println("Nom : " + lastName);
+                        
+                        System.out.print("-> Entrer le Prénom du client : ");
+                        String firstName = sc.nextLine();
+                        System.out.println("Prénom : " + firstName);
+                        
+                        System.out.print("-> Entrer l'age du client : ");
+                        int age = sc.nextInt();
+                        System.out.println("Age : " + age);
+                        
+                        System.out.print("-> Entrer le numéro du permis du client : ");
+                        int licence = sc.nextInt();
+                        
+                        System.out.println("N° de permis : " + licence);
+                        
+                        
+                        Persons customer = new Persons(lastName, firstName, age, licence);
+                        arrayPerson.add(customer);
+                        
+                                
+                        int arrPersonLength = arrayPerson.size();
+                        arrPersonLength--;
+                        String nom = arrayPerson.get(arrPersonLength).lastName;
+                        String prenom = arrayPerson.get(arrPersonLength).firstName;
+                        int lvl = arrayPerson.get(arrPersonLength).age;
+                        int permis = arrayPerson.get(arrPersonLength).licence;
+                        
+                        System.out.println("\n" + nom + " " + prenom + " à été enregistré dans le registre."
+                                         + "\nAge : " + lvl
+                                         + "\nN° Permis : " + permis);
+                        
+                        
+                        
+                
+                break;
                 case 3 : System.out.println("Option "+menuMain0Option+" executed!\n"); 
                          // Lister Clients
+                         System.out.println("**** Liste des Clients ****");
                          for (int i =0; i<arrayPerson.size(); i++) {
-                             
-                             System.out.printn(i+". "+Nom+" "+Prenom)
-                                     String Nom = arrayPerson.get(i).getName();
-                                     String Prenom = arrayPerson.get(i).getFirstname();
+                            String Nom = arrayPerson.get(i).getLastName();
+                            String Prenom = arrayPerson.get(i).getFirstName();       
+                            System.out.println(i + ". " + Nom + " " + Prenom);
                          }
-                         
-                
+                         System.out.print("Votre choix : ");
+                         int customerId = sc.nextInt();
+                         System.out.println(customerId + " a été sélectioné");
                 
                          break;
                 default: System.out.println("*** /!\\ Option "+menuMain0Option+" not valid /!\\ ***\n"); break;
@@ -107,28 +152,35 @@ public class CarGestion {
         System.out.println("\n***********************************************************"
                          + "\n***                    Menu Principal                   ***"
                          + "\n***********************************************************");
-        System.out.println("\t1. Acquérir voiture\n\t2. Enregistrer nouveau client\n\t3. Louer véhicule\n\t4. Rendre véhicule\n\t0. Quitter");
+        System.out.println( "\t1. Acquérir voiture"
+                        + "\n\t2. Enregistrer nouveau client"
+                        + "\n\t3. Louer véhicule"
+                        + "\n\t4. Rendre véhicule"
+                        + "\n\t0. Quitter" );
     }
-    public static void showMenuMain1() {
+    private static void showMenuMain1() {
         System.out.println("\n***********************************************************"
                          + "\n***               Menu Acquérir voiture                 ***"
                          + "\n***********************************************************");
         System.out.println("          -  Sélectionner le type de véhicule  -           ");
-        System.out.println("\t1. Citadine\n\t2. Berline\n\t3. S.U.V.\n\t0. Retour");
+        System.out.println(" \t1. Citadine"
+                        + "\n\t2. Berline"
+                        + "\n\t3. S.U.V."
+                        + "\n\t0. Retour" );
     }
-    public static void showMenuMain2() {
+    private static void showMenuMain2() {
         System.out.println("\n***********************************************************"
                          + "\n***         Menu Enregistrer un nouveau client          ***"
                          + "\n***********************************************************");
     }
-    public static void showMenuMain3() {
+    private static void showMenuMain3() {
         System.out.println("\n***********************************************************"
                          + "\n***               Menu Louer un véhicule                ***"
                          + "\n***********************************************************");
     }
     
     
-    public static void optionsMenuGetCar(String typeVoiture) {
+    private static void optionsMenuGetCar(String typeVoiture) {
         System.out.println("\t\tOption "+menuMain1Option+" selected!\n\t\tmodel type : "+typeVoiture+"\n");
     }
     
