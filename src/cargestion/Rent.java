@@ -7,56 +7,99 @@ package cargestion;
 
 /**
  *
- * @author eleve8
+ * @author eleve5
  */
-public class Rent  {
+public class Rent {
+
+    protected String Client;
+    protected String CarType;
+    protected int Car;
+    protected int Time;
+    public static int Location = 0;
+    protected int dureeParJourDeLocation;
+    protected Cars voiture;
+    protected int prixTarif;
+
+    public int getPrixTarif() {
+        return prixTarif;
+    }
+
+    public void setPrixTarif(int prixTarif) {
+        this.prixTarif = prixTarif;
+    }
+
     
-    protected String client;
-    protected String carType;
-    protected String car;
-    protected int numLocation = Cars.COUNT;
-
-    public Rent() {
+    public int getDureeParJourDeLocation() {
+        return dureeParJourDeLocation;
     }
 
-    public Rent(String client, String carType, String car) {
-        this.client = client;
-        this.carType = carType;
-        this.car = car;
+    public void setDureeParJourDeLocation(int dureeParJourDeLocation) {
+        this.dureeParJourDeLocation = dureeParJourDeLocation;
     }
-
+    
     public String getClient() {
-        return client;
+        return Client;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setClient(String Client) {
+        this.Client = Client;
     }
 
     public String getCarType() {
-        return carType;
+        return CarType;
     }
 
-    public void setCarType(String carType) {
-        this.carType = carType;
+    public void setCarType(String CarType) {
+        this.CarType = CarType;
     }
 
-    public String getCar() {
-        return car;
+    public int getCar() {
+        return Car;
     }
 
-    public void setCar(String car) {
-        this.car = car;
+    public void setCar(int Car) {
+        this.Car = Car;
     }
 
-    public int getNumLocation() {
-        return numLocation;
+    public int getTime() {
+        return Time;
     }
 
-    public void setNumLocation(int numLocation) {
-        this.numLocation = numLocation;
+    public void setTime(int Time) {
+        this.Time = Time;
+    }
+
+    public int getLocation() {
+        return Location;
+    }
+
+    public void setLocation(int Location) {
+        this.Location = Location;
+    }
+
+    public Cars getVoiture() {
+        return voiture;
+    }
+
+    public void setVoiture(Cars voiture) {
+        this.voiture = voiture;
+    }
+
+    public Rent(String Client, String CarType, int Car, int Time, Cars voiture, int dureeParJourDeLocation,int prixTarif) {
+        this.Client = Client;
+        this.CarType = CarType;
+        this.Car = Car;
+        this.Time = Time;
+        this.voiture = voiture;
+        this.dureeParJourDeLocation = dureeParJourDeLocation;
+        this.prixTarif = prixTarif;
+    }
+
+    public Rent() {
+        Location++;
     }
 
     
-    
+   
+   
 }

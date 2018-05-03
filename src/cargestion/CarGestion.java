@@ -21,6 +21,7 @@ public class CarGestion {
     private static int menuMain1Option = -1; // 0-1-2-3.
     private static ArrayList<Cars> arrayCar = new ArrayList();
     private static ArrayList<Persons> arrayPerson = new ArrayList();
+    private static ArrayList<Rent>arrayRent = new ArrayList();
     
     /** @param args the command line arguments  */
     public static void main(String[] args) {  System.out.println("Welcome !\n");
@@ -79,46 +80,114 @@ public class CarGestion {
                         int fee = sc.nextInt();
                         car.setDailyFee(fee);
                         car.setCarType(typeVoiture);
+                        
                         arrayCar.add(car);
-                        print(Cars.COUNT);
+                        
                         int immatriculation = arrayCar.get(arrCarLength).serial;
                         int nbPlacePass = arrayCar.get(arrCarLength).nbPassenger;
                         int feePerDay = arrayCar.get(arrCarLength).dailyFee;
                         String typeCar = arrayCar.get(arrCarLength).carType;
                         
-                        System.out.println("\nVotre "+typeCar+" à été enregistré dans le registre."
+                        print("\nVotre "+typeCar+" à été enregistré dans le registre."
                                 + "\nImmatriculation : "+immatriculation+"\tNombre d'emplacement passager : "+ nbPlacePass+"\tTarif journalier : "+ feePerDay );
                         break;
                         
-                case 2 : System.out.println("Option "+menuMain0Option+" executed!\n");
+                case 2 : print("Option "+menuMain0Option+" executed!\n");
                     showMenuMain2();
-                    menuNewVehicle();
+                    menuNewCustomer();
                 break;
                 
-                case 3 : System.out.println("Option "+menuMain0Option+" executed!\n");
-                    showMenuMain3();
+          case 3 : print("Option "+menuMain0Option+" executed!\n");
+          
+                    int arrRentLength = arrayRent.size();
+                    Rent rent = new Rent();
+                    print("-> Veuillez selectionner un client:");
+                    
+                    for(int i=0;i<arrayPerson.size();i++){
+                        print((i+1) +". "+arrayPerson.get(i).getName()  +" " + arrayPerson.get(i).getFirstname());
+                    }
+                    int choixClient = sc.nextInt();
+                    Persons clients = arrayPerson.get(choixClient-1);
+                    print("Vous venez de choisir "+clients.getName() +" " + clients.getFirstname());
+                    
+                    showMenuMain1();
+                    print("-> Entrer votre option : ");
+                    menuMain1Option = sc.nextInt();
+                    typeVoiture = "";
+                    switch(menuMain1Option){               
+                        case 0 : menuMain0Option = -1; 
+                                 break;
+                        case 1 : typeVoiture = "Citadine";
+                                 break;
+                        case 2 : typeVoiture = "Berline";  
+                                 break;
+                        case 3 : typeVoiture = "S.U.V.";
+                                 break;
+                        default: print("*** /!\\ Option "+menuMain0Option+" not valid /!\\ ***\n");
+                                 break;
+                    }
+                    
+                    print("Vous avez choisi une voiture de type "+typeVoiture +"\n");
+                    
+                    // Liste toutes les voitures
+                    for(int i=0;i<arrayCar.size();i++){
+                        if(arrayCar.get(i).carType.equals(typeVoiture) && arrayCar.get(i).available == true){
+                            print("-> Veuillez selectionner une voiture:");
+                            print((i+1)+". Immatriculation "+arrayCar.get(i).getSerial() +" - "+ arrayCar.get(i).getNbPassenger() + " personnes - " + arrayCar.get(i).getKilometrage()+ " km - " + arrayCar.get(i).getDailyFee() + " XPF/Jour" );
+                        }
+                    }
+                    
+                    // Choix de la voiture
+                    int choixVoiture = sc.nextInt();
+                    Cars voiture = arrayCar.get(choixVoiture-1);
+                    rent.setCar(voiture.getSerial());
+                    print("Vous avez choisi "+voiture.getSerial() +"\n");
+                    
+                    //La durée de location
+                    print("Saisissez la durée de location de votre vehicule: ");
+                    int duree = sc.nextInt();
+                    print("La durée de location du vehicule est de "+ duree +" jour(s)\n");
+                    rent.setTime(duree);
+                                        
+                    //Location de voiture
+                    print("N° Location "+ rent.getLocation() +" : Voiture "+ voiture.getSerial() +" pour le client "+ clients.getName());
+                    voiture.setAvailable(false);
+
+                    int kmPerLocationDay = duree * 50 ;
+                    int tarif = voiture.getPrice();
+                    
+                    rent.setClient(clients.getFirstname());
+                    rent.setCarType(typeVoiture);
+                    rent.setDureeParJourDeLocation(kmPerLocationDay);
+                    rent.setPrixTarif(tarif);
+                    arrayRent.add(rent);
+                    
+                    print("Nombre de kilometrage apres rendu : " + rent.dureeParJourDeLocation);
+                    
+                    
+                       
+                    int duration = arrayRent.get(arrRentLength).Time;
+                    Cars c = arrayRent.get(arrRentLength).voiture;
+                    
+                        
+                    // voir toutes les locations 
                 break;
                 
-                case 4 : System.out.println("Option "+menuMain0Option+" executed!\n");
-                    menuRetrieveVehicle();
+                case 4 : print("Option "+menuMain0Option+" executed!\n");
+//                    Rent ren = new Rent();
+                     for(int i = 0; i < arrayRent.size(); i++) {
+                         print((i+1) + " - Num location : " + arrayRent.get(i).getLocation());
+                     }
+                   
+                
                     break;
-                default: System.out.println("*** /!\\ L'option l"+menuMain0Option+" n'est pas valide /!\\ ***\n"); break;
+                default: print("*** /!\\ L'option "+menuMain0Option+" n'est pas valide /!\\ ***\n"); break;
             }
         }
     } // end of main
     
-    public static void menuRetrieveVehicle() {
-        for(int z = 0; z < arrayCar.size(); z++) {
-            if(arrayCar.get(z).isAvailable() == false) {
-                print("Il y a une " + arrayCar.get(z).carType + " qui a pour immatriculation " + arrayCar.get(z).serial);
-
-
-            }
-        }
-        
-    }
-    
-    public static void menuNewVehicle() {
+     
+    public static void menuNewCustomer() {
         // déclaration des variables
         
         Persons person= new Persons();
@@ -147,7 +216,7 @@ public class CarGestion {
             sc.nextLine() ;
             person.setnCarLicense(nCarLicence);
             
-        // ajout du client dans le tableau ArrayPerson
+
         arrayPerson.add(person);
         String nom = arrayPerson.get(arrPersonLength).Name;
         String prenom = arrayPerson.get(arrPersonLength).Firstname;

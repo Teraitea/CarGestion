@@ -54,4 +54,8 @@ public class Persons {
     public Persons() {
     }
     
+    public static void initPerson(String nom, String prenom, int age, int numeroPermis) {
+        
+    }
+    
 }

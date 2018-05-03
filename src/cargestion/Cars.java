@@ -20,13 +20,14 @@ public class Cars {
     protected int numberOfDoor;
     protected int horsePower;
     protected int price;
-    protected boolean available;
+    protected boolean available = true;
     protected int dailyFee;
     protected int timesRented;
     protected int nbPassenger;
-    protected int kilometrage;
+    protected int kilometrage = 0;
     protected String model;
     public static int COUNT = 0;
+    
     protected String carType;
 
     public String getCarType() {
@@ -145,6 +146,7 @@ public class Cars {
 
     public Cars() {
         COUNT++;
+//        kilometrage = kilometrage + 50;
     }
     
     public Cars(int serial, int fuelCapacity, String color, int numberOfWheel, int numberOfDoor, int horsePower, int price, boolean available, int dailyFee, int timesRented, int nbPassenger, int kilometrage, String model) {
