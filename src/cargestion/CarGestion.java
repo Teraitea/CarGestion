@@ -35,7 +35,6 @@ public class CarGestion {
             } catch (RuntimeException e) {
                 sc.next();
             }
-//            menuMain0Option = sc.nextInt();
             
             switch(menuMain0Option){
                 case 0 : menuMain0Option = 0; break;
@@ -47,8 +46,7 @@ public class CarGestion {
                         Cars car= null;
                         
                                 switch(menuMain1Option){               
-                                    case 0 : menuMain0Option = -1; 
-                                             break;
+                                    case 0 : menuMain0Option = 0; break;
                                     case 1 : typeVoiture = "Citadine"; 
                                              optionsMenuGetCar(typeVoiture); 
                                              car = new Citadine();
@@ -115,7 +113,7 @@ public class CarGestion {
                     menuMain1Option = sc.nextInt();
                     typeVoiture = "";
                     switch(menuMain1Option){               
-                        case 0 : menuMain0Option = -1; 
+                        case 0 : menuMain0Option = 0; 
                                  break;
                         case 1 : typeVoiture = "Citadine";
                                  break;
@@ -128,11 +126,11 @@ public class CarGestion {
                     }
                     
                     print("Vous avez choisi une voiture de type "+typeVoiture +"\n");
+                            print("-> Veuillez selectionner une voiture:");
                     
                     // Liste toutes les voitures
                     for(int i=0;i<arrayCar.size();i++){
-                        if(arrayCar.get(i).carType.equals(typeVoiture) && arrayCar.get(i).available == true){
-                            print("-> Veuillez selectionner une voiture:");
+                        if(arrayCar.get(i).carType.equals(typeVoiture) && arrayCar.get(i).available == true) {
                             print((i+1)+". Immatriculation "+arrayCar.get(i).getSerial() +" - "+ arrayCar.get(i).getNbPassenger() + " personnes - " + arrayCar.get(i).getKilometrage()+ " km - " + arrayCar.get(i).getDailyFee() + " XPF/Jour" );
                         }
                     }
@@ -163,21 +161,26 @@ public class CarGestion {
                     arrayRent.add(rent);
                     
                     print("Nombre de kilometrage apres rendu : " + rent.dureeParJourDeLocation);
-                    
-                    
                        
                     int duration = arrayRent.get(arrRentLength).Time;
                     Cars c = arrayRent.get(arrRentLength).voiture;
                     
-                        
                     // voir toutes les locations 
                 break;
                 
                 case 4 : print("Option "+menuMain0Option+" executed!\n");
 //                    Rent ren = new Rent();
                      for(int i = 0; i < arrayRent.size(); i++) {
+                         arrayRent.get(i).setLocation(i+1);
                          print((i+1) + " - Num location : " + arrayRent.get(i).getLocation());
                      }
+                     
+                    int choixNumLocation = sc.nextInt();
+                    Rent r = arrayRent.get(choixNumLocation);
+                    print("Vous avez choisi "+r.getLocation()+"\n");
+                
+//                    Rent r = new Rent();
+                    
                    
                 
                     break;
